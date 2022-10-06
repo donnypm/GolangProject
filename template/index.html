@@ -1,0 +1,55 @@
+{{ template "header.html"}}
+
+<div class="album py-4 bg-light">
+    <div class="container">
+        <div class="row">
+            <!--Loop over the list of videos -->
+            {{range .articles }}
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-body">
+                        <img width="300" height="230" src="data:image/jpg;base64, {{.NewImg}}" >
+                        <p class="card-text">
+                        <h4>{{.Title}}</h4>
+                        <p>{{.Description}}</p>
+                        </p>
+                        <button class="btn btn-success" onclick="openForm('{{.Id}}')">Edit</button>
+
+                        <div class="form-popup" id="myForm{{.Id}}">
+                            <form action="/update" class="form-container" method="POST">
+
+                                <input type="hidden" name="id" value="{{.Id}}">
+                                <label for="title"><b>Title</b></label>
+                                <input type="text" placeholder="Enter Title" name="title" required value="{{.Title}}">
+
+                                <label for="description"><b>Description</b></label>
+                                <input type="text" placeholder="Enter Description" name="description" required value="{{.Description}}">
+
+                                <button type="submit" class="btn">Update</button>
+                                <button type="button" class="btn cancel" onclick="closeForm('{{.Id}}')">Cancel</button>
+                            </form>
+                        </div>
+                        <div style="margin-top: 5px;">
+                            <form action="/delete" method="POST">
+                                <input type="hidden" name="id" value="{{.Id}}">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{end}}
+        </div>
+    </div>
+</div>
+
+<script>
+    function openForm(id) {
+      document.getElementById("myForm"+id).style.display = "block";
+    }
+    
+    function closeForm(id) {
+      document.getElementById("myForm"+id).style.display = "none";
+    }
+    </script>
+{{ template "footer.html"}}

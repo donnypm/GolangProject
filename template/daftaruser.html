@@ -1,0 +1,128 @@
+{{ template "header.html"}}
+
+<style>
+  .btn-login {
+    background-color: #cc1e1e;
+    width: 200px;
+    height: 40px;
+    color: #fff;
+    border-radius: 15px;
+  }
+</style>
+
+<div class="wrapper">
+  <!-- Sidebar  -->
+  <nav id="sidebar">
+    <div class="sidebar-header">
+      <img
+        src="https://www.banksinarmas.com/id/public/revamp/logoj.png"
+        alt=""
+        height="30px"
+        width="150px"
+      />
+    </div>
+
+    <ul class="list-unstyled components">
+      <li class="">
+        <a href="/dashboard">
+          <i class="fas fa-home" style="margin-right: 10px"></i>Dashboard</a
+        >
+      </li>
+      <li class="">
+        <a href="/daftarabsen">
+          <i class="fas fa-list" style="margin-right: 10px"></i>Daftar
+          Absensi</a
+        >
+      </li>
+      <li>
+        <a href="/daftarlogbook"
+          ><i class="fas fa-book-open" style="margin-right: 10px"></i>Logbook</a
+        >
+      </li>
+      <li>
+        <a href="/daftarkalender"
+          ><i class="fas fa-clock" style="margin-right: 10px"></i>Kalender</a
+        >
+      </li>
+      <li>
+        <a href="/daftarcuti">Cuti</a>
+      </li>
+      <li>
+        <a href="/daftaruser"
+          ><i class="fas fa-user" style="margin-right: 10px"></i>User</a
+        >
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Page Content  -->
+  <div id="content">
+    <nav class="navbar navbar-expand-lg navbar-light bg-nav">
+      <div class="container-fluid">
+        <button type="button" id="sidebarCollapse" class="btn bg-nav">
+          <i class="fas fa-align-left"></i>
+        </button>
+        <button
+          class="btn btn-dark d-inline-block d-lg-none ml-auto"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <i class="fas fa-align-justify"></i>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="nav navbar-nav ml-auto">
+            <img
+              src="http://cdn.onlinewebfonts.com/svg/img_184513.png"
+              height="30px"
+              width="30px"
+              alt=""
+            />
+            <li class="nav-item active">
+              <a class="nav-link" href="#profile">User</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Isi Dashboard Disini -->
+    <div class="content-page">
+      <h2>Daftar Logbook</h2>
+
+      <div class="bnt-tambah">
+        <a href="/formuser.html" class="btn btn-login">+ Tambah User</a>
+      </div>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">No</th>
+            <th scope="col">Nama</th>
+            <th scope="col">NIK</th>
+            <th scope="col">Role</th>
+            <th scope="col">Aksi</th>
+          </tr>
+        </thead>
+        <!--Loop over the list of videos -->
+        {{range .users }}
+        <tbody>
+          <tr>
+            <th scope="row">{{.Id}}</th>
+            <td>{{.Nama}}</td>
+            <td>{{.NIK}}</td>
+            <td>{{.Role}}</td>
+            <td>Detail | Hapus</td>
+          </tr>
+        </tbody>
+        {{end}}
+      </table>
+    </div>
+  </div>
+</div>
+
+{{ template "footer.html"}}
